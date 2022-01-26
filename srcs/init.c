@@ -6,11 +6,14 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 20:19:43 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/26 21:19:09 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/27 02:55:43 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+#include <stdio.h>
+
+pthread_mutex_t mutex_lock;
 
 static void	check_arg(char *str, int value, int doCheck)
 {
@@ -28,10 +31,31 @@ static void	check_arg(char *str, int value, int doCheck)
 	}
 }
 
+static void	*test(void *data)
+{
+	pthread_mutex_lock(&mutex_lock);
+
+	printf("addr : %p\n", data);
+	printf("value: %s\n", (char *)data);
+
+	pthread_mutex_unlock(&mutex_lock);
+	return NULL;
+}
+
 static void	init_philo(t_var *philo)
 {
-	philo->philos = malloc(sizeof(struct s_philo) * philo->count);
+	philo->philos = malloc(sizeof(pthread_t) * philo->count);
 	philo->forks = malloc(sizeof(t_fork) * philo->count);
+	pthread_mutex_init(&mutex_lock, NULL);
+	for (int idx = 0; idx < philo->count; idx++)
+	{
+		char *data = malloc(sizeof(char) * 2);
+		data[0] = '0' + idx;
+		data[1] = '\0';
+		pthread_create(&philo->philos[idx], NULL, test, data);
+	}
+	for (int idx = 0; idx < philo->count; idx++)
+		pthread_join(philo->philos[idx], NULL);
 }
 
 void	init(t_var *philo, int argc, char *argv[])

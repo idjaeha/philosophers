@@ -1,28 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memory.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/26 19:30:23 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/27 01:35:57 by jayi             ###   ########.fr       */
+/*   Created: 2022/01/27 01:54:39 by jayi              #+#    #+#             */
+/*   Updated: 2022/01/27 01:55:12 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	main(int argc, char *argv[])
+void	*ft_memset(void *byte_str, int ch, size_t len)
 {
-	t_var	philo;
+	char	*idx_byte;
+	char	*end_byte;
 
-	if (argc == 5 || argc == 6)
+	idx_byte = byte_str;
+	end_byte = byte_str + len;
+	while (idx_byte != end_byte)
 	{
-		init(&philo, argc, argv);
-		eat(&philo);
-		free_all(&philo);
-		return (1);
+		*idx_byte = ch;
+		++idx_byte;
 	}
-	ft_putstr_fd("올바르지 않은 인자의 개수\n", 1);
-	return (1);
+	return (byte_str);
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*new_memory;
+	int		len;
+
+	len = count * size;
+	new_memory = malloc(len);
+	if (new_memory == NULL)
+	{
+		return (NULL);
+	}
+	return (ft_memset(new_memory, 0, len));
 }

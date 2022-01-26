@@ -3,6 +3,10 @@ CFLAGS=-Wall -Wextra -Werror
 SRCS_NAME=	main.c\
 			ft_atoi.c\
 			ft_print.c\
+			ft_string.c\
+			ft_memory.c\
+			eat.c\
+			free.c\
 			init.c\
 			philo_error.c
 INCFALGS=-I./includes
