@@ -2,6 +2,7 @@ NAME=philo
 CFLAGS=-Wall -Wextra -Werror
 SRCS_NAME=	main.c\
 			ft_atoi.c\
+			ft_print.c\
 			init.c\
 			philo_error.c
 INCFALGS=-I./includes

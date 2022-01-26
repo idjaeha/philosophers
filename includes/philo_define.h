@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:31:01 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/26 20:30:22 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/26 21:12:45 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,9 @@
 # define TRUE 1
 # define FALSE 0
 # define DEBUG 1
+# define STATUS_SLEEP 1
+# define STATUS_EATING 2
+# define STATUS_SLEEPING 3
+# define STATUS_THINKING 4
 
 #endif
