@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.h                                     :+:      :+:    :+:   */
+/*   philo_define.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/26 19:30:20 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/26 20:30:16 by jayi             ###   ########.fr       */
+/*   Created: 2022/01/26 19:31:01 by jayi              #+#    #+#             */
+/*   Updated: 2022/01/26 20:30:22 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOPHERS_H
-# define PHILOSOPHERS_H
+#ifndef PHILO_DEFINE_H
+# define PHILO_DEFINE_H
 
-# include "philo_define.h"
-# include "philo_types.h"
-
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-
-int		ft_atoi(const char *str);
-void	philo_error(char *msg, int flag);
-void	philo_exit(void);
-void	init_argv(t_var *philo, int argc, char *argv[]);
+# define ABS_LLONG_MAX 	9223372036854775807ULL
+# define ABS_LLONG_MIN 	9223372036854775808ULL
+# define MAX_INT 0x7FFFFFFF
+# define MIN_INT 0xFFFFFFFF
+# define TRUE 1
+# define FALSE 0
+# define DEBUG 1
 
 #endif

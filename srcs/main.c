@@ -1,17 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_define.h                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/26 19:31:01 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/26 19:36:35 by jayi             ###   ########.fr       */
+/*   Created: 2022/01/26 19:30:23 by jayi              #+#    #+#             */
+/*   Updated: 2022/01/26 20:22:12 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PS_DEFINE_H
-# define PS_DEFINE_H
+#include "philosophers.h"
 
 
-#endif
+	
+int main(int argc, char *argv[])
+{
+	t_var philo;
+	if (argc == 5 || argc == 6)
+	{
+		init_argv(&philo, argc, argv);
+		return (1);
+	}
+	else
+		return printf("올바르지 않은 인자의 개수\n") > 0;
+}

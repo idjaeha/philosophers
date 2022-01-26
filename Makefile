@@ -1,6 +1,9 @@
-NAME=philosophers
+NAME=philo
 CFLAGS=-Wall -Wextra -Werror
-SRCS_NAME=	philosophers.c
+SRCS_NAME=	main.c\
+			ft_atoi.c\
+			init.c\
+			philo_error.c
 INCFALGS=-I./includes
 SRCS_DIR= ./srcs
 SRCS=$(addprefix $(SRCS_DIR)/, $(SRCS_NAME))
@@ -8,8 +11,8 @@ OBJS_NAME= $(SRCS_NAME:.c=.o)
 OBJS_DIR= ./objs
 OBJS= $(addprefix $(OBJS_DIR)/, $(OBJS_NAME))
 INCS_NAME=	philosophers.h\
-			ps_define.h\
-			ps_types.h
+			philo_define.h\
+			philo_types.h
 INCS_DIR= ./includes
 INCS=$(addprefix $(INCS_DIR)/, $(INCS_NAME))
 

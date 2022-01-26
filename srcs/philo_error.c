@@ -1,17 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_types.h                                         :+:      :+:    :+:   */
+/*   philo_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/26 19:31:00 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/26 19:36:29 by jayi             ###   ########.fr       */
+/*   Created: 2022/01/26 20:17:19 by jayi              #+#    #+#             */
+/*   Updated: 2022/01/26 20:30:05 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PS_TYPES_H
-# define PS_TYPES_H
+#include "philosophers.h"
 
+void	philo_exit(void)
+{
+	exit(1);
+}
 
-#endif
+void	philo_error(char *msg, int flag)
+{
+	int	len;
+
+	len = 0;
+	if (DEBUG)
+	{
+		while (msg[len] != '\0')
+			++len;
+		write(STDERR_FILENO, msg, len);
+		write(STDERR_FILENO, "\n", 1);
+	}
+	write(STDERR_FILENO, "Error\n", 6);
+	exit(flag);
+}
