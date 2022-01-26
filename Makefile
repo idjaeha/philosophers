@@ -1,20 +1,6 @@
 NAME=philosophers
 CFLAGS=-Wall -Wextra -Werror
-SRCS_NAME=	philosophers.c\
-			ps_operation_1.c\
-			ps_operation_2.c\
-			ps_lst.c\
-			ps_error.c\
-			ft_atoi.c\
-			ft_string.c\
-			ft_memory.c\
-			ft_print.c\
-			ft_split.c\
-			order_nums.c\
-			sort_utility.c\
-			ft_sort.c\
-			ft_sort_when_less_5.c\
-			init_nums.c
+SRCS_NAME=	philosophers.c
 INCFALGS=-I./includes
 SRCS_DIR= ./srcs
 SRCS=$(addprefix $(SRCS_DIR)/, $(SRCS_NAME))

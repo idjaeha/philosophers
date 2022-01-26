@@ -6,7 +6,16 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:30:23 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/26 19:31:04 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/26 19:38:42 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "philosophers.h"
+
+int main(int argc, char *argv[])
+{
+	(void)argc;
+	(void)argv;
+	
+	write(1, "초기 세팅 테스트\n", 24);
+}
