@@ -6,55 +6,45 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 20:19:43 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/27 02:55:43 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/27 14:59:46 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-#include <stdio.h>
-
-pthread_mutex_t mutex_lock;
 
 static void	check_arg(char *str, int value, int doCheck)
 {
 	if (doCheck == FALSE)
 		return ;
 	if (value < 0)
-		philo_error("인자는 음수일 수 없습니다.", 2);
+		philo_error("인자는 음수일 수 없습니다.", 0);
 	while (*str != '\0')
 	{
 		if (('0' <= *str && *str <= '9')
 			|| *str == ' ' || *str == '+' || *str == '-')
 			str++;
 		else
-			philo_error("인자는 숫자만 가능합니다.", 2);
+			philo_error("인자는 숫자만 가능합니다.", 0);
 	}
-}
-
-static void	*test(void *data)
-{
-	pthread_mutex_lock(&mutex_lock);
-
-	printf("addr : %p\n", data);
-	printf("value: %s\n", (char *)data);
-
-	pthread_mutex_unlock(&mutex_lock);
-	return NULL;
 }
 
 static void	init_philo(t_var *philo)
 {
+	int	idx;
+
+	idx = -1;
 	philo->philos = malloc(sizeof(pthread_t) * philo->count);
-	philo->forks = malloc(sizeof(t_fork) * philo->count);
-	pthread_mutex_init(&mutex_lock, NULL);
-	for (int idx = 0; idx < philo->count; idx++)
+	philo->forks = malloc(sizeof(int) * philo->count);
+	philo->args = malloc(sizeof(t_arg) * philo->count);
+	philo->status = ft_calloc(philo->count, sizeof(int));
+	pthread_mutex_init(&philo->fork_lock, NULL);
+	while (++idx < philo->count)
 	{
-		char *data = malloc(sizeof(char) * 2);
-		data[0] = '0' + idx;
-		data[1] = '\0';
-		pthread_create(&philo->philos[idx], NULL, test, data);
+		philo->args[idx].idx = idx;
+		philo->args[idx].philo = philo;
+		pthread_create(&philo->philos[idx], NULL, act, &philo->args[idx]);
 	}
-	for (int idx = 0; idx < philo->count; idx++)
+	while (--idx > 0)
 		pthread_join(philo->philos[idx], NULL);
 }
 

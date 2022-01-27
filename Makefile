@@ -5,7 +5,7 @@ SRCS_NAME=	main.c\
 			ft_print.c\
 			ft_string.c\
 			ft_memory.c\
-			eat.c\
+			act.c\
 			free.c\
 			init.c\
 			philo_error.c
