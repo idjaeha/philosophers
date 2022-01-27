@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:31:01 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/27 17:52:54 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/28 06:12:04 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,16 @@
 # define TRUE 1
 # define FALSE 0
 # define DEBUG 1
-# define STATUS_THINKING 0
-# define STATUS_DIED 1
-# define STATUS_EATING 2
-# define STATUS_SLEEPING 3
-# define STATUS_TAKEN_FORK 4
-# define STATUS_END 4
+
+# define TAKEN_FORK 0
+# define START_EATING 1
+# define EATING 2
+# define START_SLEEPING 3
+# define SLEEPING 4
+# define START_THINKING 5
+# define THINKING 6
+
+# define STATUS_DIED 4
+# define STATUS_END 5
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 20:19:43 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/27 17:55:03 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/28 06:36:29 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static void	init_philo(t_var *var)
 	int	idx;
 
 	idx = -1;
+	var->is_end = 0;
 	var->forks = malloc(sizeof(int) * var->count);
 	var->status = ft_calloc(sizeof(int), var->count);
 	var->philos = ft_calloc(sizeof(t_philo), var->count);
@@ -42,7 +43,7 @@ static void	init_philo(t_var *var)
 	{
 		var->philos[idx].idx = idx;
 		var->philos[idx].var = var;
-		var->philos[idx].end = var->time.die;
+		var->philos[idx].act_end = var->time.die;
 		var->philos[idx].die = var->time.die;
 		var->philos[idx].status = var->status;
 		pthread_create(&var->philo_threads[idx], NULL, act, &var->philos[idx]);
