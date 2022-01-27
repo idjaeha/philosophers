@@ -7,6 +7,7 @@ SRCS_NAME=	main.c\
 			ft_memory.c\
 			act.c\
 			free.c\
+			time.c\
 			init.c\
 			philo_error.c
 INCFALGS=-I./includes

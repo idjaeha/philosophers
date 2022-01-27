@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/27 01:33:02 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/27 16:04:48 by jayi             ###   ########.fr       */
+/*   Created: 2022/01/27 17:16:56 by jayi              #+#    #+#             */
+/*   Updated: 2022/01/27 18:00:18 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	free_all(t_var *var)
+time_t	get_mseconds(void)
 {
-	free(var->forks);
-	free(var->status);
-	free(var->philos);
-	free(var->philo_threads);
-	pthread_mutex_destroy(&var->fork_lock);
+	static time_t	start = 0;
+	struct timeval	time;
+	gettimeofday(&time, NULL);
+	if (start == 0)
+		start = time.tv_sec;
+
+	return ((time.tv_sec - start) * 1000 + time.tv_usec / 1000);
+}
+
+suseconds_t	get_useconds(void)
+{
+	struct timeval	time;
+	gettimeofday(&time, NULL);
+
+	return (time.tv_usec);
 }

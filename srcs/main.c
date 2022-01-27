@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:30:23 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/27 14:58:08 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/27 15:50:37 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int	main(int argc, char *argv[])
 {
-	t_var	philo;
+	t_var	var;
 
 	if (argc == 5 || argc == 6)
 	{
-		init(&philo, argc, argv);
-		free_all(&philo);
+		init(&var, argc, argv);
+		free_all(&var);
 		return (1);
 	}
 	philo_error("올바르지 않은 인자의 개수", 0);

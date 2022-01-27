@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:30:20 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/27 14:53:44 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/27 17:38:19 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ void	philo_error(char *msg, int flag);
 void	philo_exit(void);
 void	*act(void *data);
 void	init(t_var *philo, int argc, char *argv[]);
+time_t	get_mseconds(void);
+suseconds_t	get_useconds(void);
 
 #endif

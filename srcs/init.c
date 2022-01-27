@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 20:19:43 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/27 14:59:46 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/27 17:55:03 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,38 +28,43 @@ static void	check_arg(char *str, int value, int doCheck)
 	}
 }
 
-static void	init_philo(t_var *philo)
+static void	init_philo(t_var *var)
 {
 	int	idx;
 
 	idx = -1;
-	philo->philos = malloc(sizeof(pthread_t) * philo->count);
-	philo->forks = malloc(sizeof(int) * philo->count);
-	philo->args = malloc(sizeof(t_arg) * philo->count);
-	philo->status = ft_calloc(philo->count, sizeof(int));
-	pthread_mutex_init(&philo->fork_lock, NULL);
-	while (++idx < philo->count)
+	var->forks = malloc(sizeof(int) * var->count);
+	var->status = ft_calloc(sizeof(int), var->count);
+	var->philos = ft_calloc(sizeof(t_philo), var->count);
+	var->philo_threads = malloc(sizeof(pthread_t) * var->count);
+	pthread_mutex_init(&var->fork_lock, NULL);
+	while (++idx < var->count)
 	{
-		philo->args[idx].idx = idx;
-		philo->args[idx].philo = philo;
-		pthread_create(&philo->philos[idx], NULL, act, &philo->args[idx]);
+		var->philos[idx].idx = idx;
+		var->philos[idx].var = var;
+		var->philos[idx].end = var->time.die;
+		var->philos[idx].die = var->time.die;
+		var->philos[idx].status = var->status;
+		pthread_create(&var->philo_threads[idx], NULL, act, &var->philos[idx]);
 	}
 	while (--idx > 0)
-		pthread_join(philo->philos[idx], NULL);
+		pthread_join(var->philo_threads[idx], NULL);
 }
 
-void	init(t_var *philo, int argc, char *argv[])
+void	init(t_var *var, int argc, char *argv[])
 {
-	philo->count = ft_atoi(argv[1]);
-	philo->time.die = ft_atoi(argv[2]);
-	philo->time.eat = ft_atoi(argv[3]);
-	philo->time.sleep = ft_atoi(argv[4]);
+	var->count = ft_atoi(argv[1]);
+	var->time.die = ft_atoi(argv[2]);
+	var->time.eat = ft_atoi(argv[3]);
+	var->time.sleep = ft_atoi(argv[4]);
 	if (argc == 6)
-		philo->must_eat = ft_atoi(argv[5]);
-	check_arg(argv[1], philo->count, TRUE);
-	check_arg(argv[2], philo->time.die, TRUE);
-	check_arg(argv[3], philo->time.eat, TRUE);
-	check_arg(argv[4], philo->time.sleep, TRUE);
-	check_arg(argv[5], philo->must_eat, argc == 6);
-	init_philo(philo);
+		var->must_eat = ft_atoi(argv[5]);
+	else
+		var->must_eat = -1;
+	check_arg(argv[1], var->count, TRUE);
+	check_arg(argv[2], var->time.die, TRUE);
+	check_arg(argv[3], var->time.eat, TRUE);
+	check_arg(argv[4], var->time.sleep, TRUE);
+	check_arg(argv[5], var->must_eat, argc == 6);
+	init_philo(var);
 }

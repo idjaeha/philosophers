@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:31:00 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/27 14:27:30 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/27 17:51:04 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 typedef struct s_fork	t_fork;
 typedef struct s_var 	t_var;
-typedef struct s_arg 	t_arg;
+typedef struct s_philo 	t_philo;
 
 struct s_fork {
 	int	id;
@@ -33,14 +33,18 @@ struct s_var {
 	int					*status;
 	int					*forks;
 	int					must_eat;
-	t_arg				*args;
-	pthread_t			*philos;
+	t_philo				*philos;
+	pthread_t			*philo_threads;
 	pthread_mutex_t		fork_lock;
 };
 
-struct s_arg {
+struct s_philo {
 	int		idx;
-	t_var	*philo;
+	int		end;
+	int		die;
+	int		eat;
+	int		*status;
+	t_var	*var;
 };
 
 #endif
