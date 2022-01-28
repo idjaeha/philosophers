@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 05:26:08 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/29 05:48:05 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/29 05:53:08 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	*check_die(void *data)
 	int		idx;
 
 	var = (t_var *)data;
-	printf("check_die %d\n", var->is_end);
-	var->is_end = 0;
 	while (var->is_end == 0)
 	{
 		idx = -1;
@@ -43,8 +41,6 @@ void	*check_eat(void *data)
 	int		checker;
 
 	var = (t_var *)data;
-	printf("check_eat %d\n", var->is_end);
-	var->is_end = 0;
 	while (var->is_end == 0)
 	{
 		idx = -1;
