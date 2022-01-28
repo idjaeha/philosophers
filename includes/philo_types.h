@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:31:00 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/28 06:35:24 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/28 17:06:23 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ struct s_var {
 	}					time;
 	int					is_end;
 	int					count;
-	int					*status;
 	int					*forks;
 	int					must_eat;
 	t_philo				*philos;
@@ -41,10 +40,11 @@ struct s_var {
 
 struct s_philo {
 	int		idx;
-	int		act_end;
 	int		die;
 	int		eat;
-	int		*status;
+	int		status;
+	int		act_end;
+	time_t	create;
 	t_var	*var;
 };
 

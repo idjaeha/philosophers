@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 17:16:56 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/28 06:31:38 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/28 17:10:40 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,13 @@ suseconds_t	get_useconds(void)
 	gettimeofday(&time, NULL);
 
 	return (time.tv_usec);
+}
+
+time_t	get_gap(time_t now)
+{
+	static time_t	start = 0;
+
+	if (start == 0)
+		start = now;
+	return (now - start);
 }
