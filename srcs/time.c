@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 17:16:56 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/29 02:23:50 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/29 05:08:50 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ time_t	get_mseconds(void)
 
 	gettimeofday(&time, NULL);
 	if (start == 0)
-		start = time.tv_sec * 1000 + time.tv_usec / 1000; 
+		start = time.tv_sec * 1000 + time.tv_usec / 1000;
 	return (time.tv_sec * 1000 + time.tv_usec / 1000 - start);
 }
 
 suseconds_t	get_useconds(void)
 {
 	struct timeval	time;
-	gettimeofday(&time, NULL);
 
+	gettimeofday(&time, NULL);
 	return (time.tv_usec);
 }

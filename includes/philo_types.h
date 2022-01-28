@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:31:00 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/29 04:47:38 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/29 05:35:00 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <pthread.h>
 
 typedef struct s_fork	t_fork;
-typedef struct s_var 	t_var;
-typedef struct s_philo 	t_philo;
+typedef struct s_var	t_var;
+typedef struct s_philo	t_philo;
 
 struct s_fork {
 	int	id;
@@ -33,7 +33,9 @@ struct s_var {
 	int					count;
 	int					must_eat;
 	t_philo				*philos;
-	pthread_t			*philo_threads;
+	pthread_t			*philo_act;
+	pthread_t			check_eat;
+	pthread_t			check_die;
 	pthread_mutex_t		*forks;
 };
 

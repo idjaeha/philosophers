@@ -6,6 +6,7 @@ SRCS_NAME=	main.c\
 			ft_string.c\
 			ft_memory.c\
 			act.c\
+			check.c\
 			free.c\
 			time.c\
 			init.c\

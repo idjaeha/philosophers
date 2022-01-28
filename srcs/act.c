@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:46:54 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/29 04:48:42 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/29 05:40:34 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,14 @@ static void	release_fork(t_philo *philo)
 
 void	*act(void *data)
 {
-	t_var *var = ((t_philo *)data)->var;
-	t_philo *philo  = ((t_philo *)data);
+	t_var	*var;
+	t_philo	*philo;
 
+	var = ((t_philo *)data)->var;
+	philo = (t_philo *)data;
 	if ((philo->idx & 1) == 0)
 		usleep(var->time.eat * 1000);
-	while (var->is_end == 0 && get_mseconds() < philo->die)
+	while (var->is_end == 0)
 	{
 		if (philo->status == TAKEN_FORK)
 			taken_fork(philo);
@@ -59,9 +61,6 @@ void	*act(void *data)
 		else if (philo->act_end <= get_mseconds())
 			philo->status++;
 	}
-	if (var->is_end == 0 && get_mseconds() >= philo->die)
-		print_message(get_mseconds(), MSG_DIED, philo->idx);
 	release_fork(philo);
-	var->is_end = 1;
 	return (NULL);
 }

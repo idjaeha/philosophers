@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 20:19:43 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/29 04:47:21 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/29 05:46:50 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	init_philo(t_var *var)
 	var->is_end = 0;
 	var->philos = ft_calloc(sizeof(t_philo), var->count);
 	var->forks = malloc(sizeof(pthread_mutex_t) * var->count);
-	var->philo_threads = malloc(sizeof(pthread_t) * var->count);
+	var->philo_act = malloc(sizeof(pthread_t) * var->count);
 	while (++idx < var->count)
 	{
 		var->philos[idx].idx = idx;
@@ -47,10 +47,14 @@ static void	init_philo(t_var *var)
 		var->philos[idx].left = &var->forks[idx];
 		var->philos[idx].right = &var->forks[(idx + 1) % var->count];
 		pthread_mutex_init(&var->forks[idx], NULL);
-		pthread_create(&var->philo_threads[idx], NULL, act, &var->philos[idx]);
+		pthread_create(&var->philo_act[idx], NULL, act, &var->philos[idx]);
 	}
+	pthread_create(&var->check_die, NULL, check_die, &var);
+	pthread_create(&var->check_eat, NULL, check_eat, &var);
 	while (--idx > 0)
-		pthread_join(var->philo_threads[idx], NULL);
+		pthread_join(var->philo_act[idx], NULL);
+	pthread_join(var->check_die, NULL);
+	pthread_join(var->check_eat, NULL);
 }
 
 void	init(t_var *var, int argc, char *argv[])
@@ -62,7 +66,7 @@ void	init(t_var *var, int argc, char *argv[])
 	if (argc == 6)
 		var->must_eat = ft_atoi(argv[5]);
 	else
-		var->must_eat = -1;
+		var->must_eat = MAX_INT;
 	check_arg(argv[1], var->count, TRUE);
 	check_arg(argv[2], var->time.die, TRUE);
 	check_arg(argv[3], var->time.eat, TRUE);
