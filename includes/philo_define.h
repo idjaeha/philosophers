@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:31:01 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/28 06:12:04 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/29 03:29:04 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,14 @@
 
 # define STATUS_DIED 4
 # define STATUS_END 5
+
+# define MSG_FORK 0
+# define MSG_EATING 1
+# define MSG_BLANK 2
+# define MSG_SLEEPING 3
+# define MSG_LEFT_FORK 4
+# define MSG_THINKING 5
+# define MSG_RIGHT_FORK 6
+# define MSG_DIED 7
 
 #endif

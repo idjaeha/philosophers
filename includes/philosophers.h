@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:30:20 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/29 02:23:45 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/29 03:00:51 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 # include "philo_define.h"
 # include "philo_types.h"
 
+# include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <sys/time.h>
-# include <stdio.h>
 
 int		ft_atoi(const char *str);
 void	ft_putnbr_fd(int n, int fd);
@@ -33,6 +33,7 @@ size_t	ft_strlen(const char *str);
 void	free_all(t_var *philo);
 void	philo_error(char *msg, int flag);
 void	philo_exit(void);
+void	print_message(time_t now, int status, int idx);
 void	*act(void *data);
 void	init(t_var *philo, int argc, char *argv[]);
 time_t	get_mseconds(void);

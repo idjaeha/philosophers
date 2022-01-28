@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 20:46:44 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/29 02:23:53 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/29 04:33:36 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,13 @@ void	ft_putnbr_fd(int n, int fd)
 
 	((n < 0) && (sign = -1)) || ((n >= 0) && (sign = 1));
 	ft_recv_putnbr_fd(n, 0, fd, sign);
+}
+
+void	print_message(time_t now, int status, int idx)
+{
+	static char *message[] = {"has taken a fork", "is eating", ""\
+							, "is sleeping", "has taken a left fork", "is thinking", "has taken a right fork"\
+							, "died", "finish"};
+
+	printf("%-6ld %d %s\n", now, idx + 1, message[status]);
 }

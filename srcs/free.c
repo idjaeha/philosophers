@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 01:33:02 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/28 17:06:22 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/29 03:45:37 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,12 @@
 
 void	free_all(t_var *var)
 {
-	free(var->forks);
+	int	idx;
+
+	idx = var->count + 1;
 	free(var->philos);
 	free(var->philo_threads);
-	pthread_mutex_destroy(&var->fork_lock);
+	while (--idx > 0)
+		pthread_mutex_destroy(&var->forks[idx]);
+	free(var->forks);
 }
