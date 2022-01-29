@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 05:26:08 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/30 04:04:59 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/30 04:26:40 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,12 @@ void	*check_die(void *data)
 	while (philo->var->is_end == 0)
 	{
 		pthread_mutex_lock(&philo->eat_or_die);
+		pthread_mutex_unlock(&philo->eat_or_die);
 		if (get_mseconds() >= philo->die)
 		{
 			philo->var->is_end = 1;
 			print_message(get_mseconds(), MSG_DIED, philo->idx);
-			break ;
 		}
-		pthread_mutex_unlock(&philo->eat_or_die);
 	}
 	return (NULL);
 }
