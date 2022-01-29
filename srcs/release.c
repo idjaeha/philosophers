@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   release.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 01:33:02 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/29 05:38:43 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/30 04:04:43 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	free_all(t_var *var)
+void	release(t_var *var)
 {
 	int	idx;
 
-	idx = var->count + 1;
+	idx = -1;
+	while (++idx < var->count)
+		pthread_detach(var->philos[idx].act);
+	idx = -1;
+	while (++idx < var->count)
+		pthread_join(var->philos[idx].check_die, NULL);
+	if (var->must_eat != -1)
+		pthread_join(var->check_must_eat, NULL);
+	while (--idx >= 0)
+	{
+		pthread_mutex_destroy(&var->philos[idx].fork);
+		pthread_mutex_destroy(&var->philos[idx].eat_or_die);
+	}
 	free(var->philos);
-	free(var->philo_act);
-	while (--idx > 0)
-		pthread_mutex_destroy(&var->forks[idx]);
-	free(var->forks);
 }

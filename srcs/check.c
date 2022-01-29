@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 05:26:08 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/29 16:35:25 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/30 04:04:59 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,24 @@
 
 void	*check_die(void *data)
 {
-	t_var	*var;
-	int		idx;
+	t_philo	*philo;
 
-	var = (t_var *)data;
-	while (var->is_end == 0)
+	philo = (t_philo *)data;
+	while (philo->var->is_end == 0)
 	{
-		idx = -1;
-		while (++idx < var->count)
+		pthread_mutex_lock(&philo->eat_or_die);
+		if (get_mseconds() >= philo->die)
 		{
-			if (get_mseconds() >= var->philos[idx].die)
-			{
-				var->is_end = 1;
-				print_message(get_mseconds(), MSG_DIED, idx);
-				break ;
-			}
+			philo->var->is_end = 1;
+			print_message(get_mseconds(), MSG_DIED, philo->idx);
+			break ;
 		}
+		pthread_mutex_unlock(&philo->eat_or_die);
 	}
 	return (NULL);
 }
 
-void	*check_eat(void *data)
+void	*check_must_eat(void *data)
 {
 	t_var	*var;
 	int		idx;

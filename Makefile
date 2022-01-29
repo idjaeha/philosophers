@@ -1,16 +1,16 @@
 NAME=philo
 CFLAGS=-Wall -Wextra -Werror
 SRCS_NAME=	main.c\
+			act.c\
+			time.c\
+			init.c\
+			check.c\
+			release.c\
+			philo_error.c\
 			ft_atoi.c\
 			ft_print.c\
 			ft_string.c\
-			ft_memory.c\
-			act.c\
-			check.c\
-			free.c\
-			time.c\
-			init.c\
-			philo_error.c
+			ft_memory.c
 INCFALGS=-I./includes
 SRCS_DIR= ./srcs
 SRCS=$(addprefix $(SRCS_DIR)/, $(SRCS_NAME))

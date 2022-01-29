@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:46:54 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/29 16:31:03 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/30 04:04:47 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ static void	taken_fork(t_philo *philo)
 {
 	pthread_mutex_lock(philo->left);
 	pthread_mutex_lock(philo->right);
-	if (philo->var->is_end == 0)
-		print_message(get_mseconds(), MSG_FORK, philo->idx);
+	print_message(get_mseconds(), MSG_FORK, philo->idx);
 	philo->status++;
 }
 
@@ -31,10 +30,12 @@ static void	start_eating(t_philo *philo)
 {
 	const time_t	now = get_mseconds();
 
+	pthread_mutex_lock(&philo->eat_or_die);
 	philo->eat++;
 	philo->act_end = philo->var->time.eat + now;
 	philo->die = philo->var->time.die + now;
 	print_message(now, philo->status++, philo->idx);
+	pthread_mutex_unlock(&philo->eat_or_die);
 }
 
 static void	start_sleeping(t_philo *philo)
@@ -69,6 +70,5 @@ void	*act(void *data)
 		else if (philo->act_end <= get_mseconds())
 			philo->status++;
 	}
-	release_fork(philo);
 	return (NULL);
 }

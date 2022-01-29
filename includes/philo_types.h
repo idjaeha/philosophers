@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:31:00 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/29 05:35:00 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/30 04:08:31 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,7 @@ struct s_var {
 	int					count;
 	int					must_eat;
 	t_philo				*philos;
-	pthread_t			*philo_act;
-	pthread_t			check_eat;
-	pthread_t			check_die;
-	pthread_mutex_t		*forks;
+	pthread_t			check_must_eat;
 };
 
 struct s_philo {
@@ -47,6 +44,10 @@ struct s_philo {
 	int				act_end;
 	t_var			*var;
 	time_t			create;
+	pthread_t		act;
+	pthread_t		check_die;
+	pthread_mutex_t	fork;
+	pthread_mutex_t	eat_or_die;
 	pthread_mutex_t	*left;
 	pthread_mutex_t	*right;
 };

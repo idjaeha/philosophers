@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:30:20 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/29 05:36:02 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/30 03:23:43 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		*ft_memset(void *byte_str, int ch, size_t len);
 void		*ft_calloc(size_t count, size_t size);
 size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t		ft_strlen(const char *str);
-void		free_all(t_var *philo);
+void		release(t_var *var);
 void		philo_error(char *msg, int flag);
 void		philo_exit(void);
 void		print_message(time_t now, int status, int idx);
@@ -39,6 +39,6 @@ void		init(t_var *philo, int argc, char *argv[]);
 time_t		get_mseconds(void);
 suseconds_t	get_useconds(void);
 void		*check_die(void *data);
-void		*check_eat(void *data);
+void		*check_must_eat(void *data);
 
 #endif

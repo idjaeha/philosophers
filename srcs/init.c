@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 20:19:43 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/29 16:41:48 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/30 04:08:02 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,35 +40,24 @@ static void	init_philos(t_var *var)
 		var->philos[idx].die = var->time.die;
 		var->philos[idx].status = TAKEN_FORK;
 		var->philos[idx].act_end = 0;
-		var->philos[idx].left = &var->forks[idx];
-		var->philos[idx].right = &var->forks[(idx + 1) % var->count];
-		pthread_mutex_init(&var->forks[idx], NULL);
-		pthread_create(&var->philo_act[idx], NULL, act, &var->philos[idx]);
+		var->philos[idx].left = &var->philos[idx].fork;
+		var->philos[idx].right = &var->philos[(idx + 1) % var->count].fork;
+		pthread_mutex_init(&var->philos[idx].fork, NULL);
+		pthread_mutex_init(&var->philos[idx].eat_or_die, NULL);
+		pthread_create(&var->philos[idx].act, NULL, act, &var->philos[idx]);
+		pthread_create(&var->philos[idx].check_die, NULL, check_die, &var->philos[idx]);
 	}
-	pthread_create(&var->check_die, NULL, check_die, var);
-	if (var->must_eat != -1)
-		pthread_create(&var->check_eat, NULL, check_eat, var);
 }
 
 static void	init_var(t_var *var)
 {
 	var->is_end = 0;
 	var->philos = ft_calloc(sizeof(t_philo), var->count);
-	var->forks = malloc(sizeof(pthread_mutex_t) * var->count);
-	var->philo_act = malloc(sizeof(pthread_t) * var->count);
+	if (var->philos == NULL)
+		philo_error("malloc에 실패했습니다.", 0);
 	init_philos(var);
-}
-
-static void	join_thread(t_var *var)
-{
-	int	idx;
-
-	idx = var->count;
-	while (--idx > 0)
-		pthread_join(var->philo_act[idx], NULL);
-	pthread_join(var->check_die, NULL);
 	if (var->must_eat != -1)
-		pthread_join(var->check_eat, NULL);
+		pthread_create(&var->check_must_eat, NULL, check_must_eat, var);
 }
 
 void	init(t_var *var, int argc, char *argv[])
@@ -87,5 +76,4 @@ void	init(t_var *var, int argc, char *argv[])
 	check_arg(argv[4], var->time.sleep, TRUE);
 	check_arg(argv[5], var->must_eat, argc == 6);
 	init_var(var);
-	join_thread(var);
 }
