@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 20:19:43 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/29 16:28:46 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/29 16:41:00 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,10 @@ static void	init_philos(t_var *var)
 		pthread_mutex_init(&var->forks[idx], NULL);
 		pthread_create(&var->philo_act[idx], NULL, act, &var->philos[idx]);
 	}
-	while (--idx > 0)
-		pthread_join(var->philo_act[idx], NULL);
+	pthread_create(&var->check_die, NULL, check_die, var);
+	if (var->must_eat != -1)
+		pthread_create(&var->check_eat, NULL, check_eat, var);
+
 }
 
 static void	init_var(t_var *var)
@@ -56,10 +58,18 @@ static void	init_var(t_var *var)
 	var->forks = malloc(sizeof(pthread_mutex_t) * var->count);
 	var->philo_act = malloc(sizeof(pthread_t) * var->count);
 	init_philos(var);
-	pthread_create(&var->check_die, NULL, check_die, var);
-	pthread_create(&var->check_eat, NULL, check_eat, var);
+}
+
+static void	join_thread(t_var *var)
+{
+	int idx;
+
+	idx = var->count;
+	while (--idx > 0)
+		pthread_join(var->philo_act[idx], NULL);
 	pthread_join(var->check_die, NULL);
-	pthread_join(var->check_eat, NULL);
+	if (var->must_eat != -1)
+		pthread_join(var->check_eat, NULL);
 }
 
 void	init(t_var *var, int argc, char *argv[])
@@ -71,11 +81,12 @@ void	init(t_var *var, int argc, char *argv[])
 	if (argc == 6)
 		var->must_eat = ft_atoi(argv[5]);
 	else
-		var->must_eat = MAX_INT;
+		var->must_eat = -1;
 	check_arg(argv[1], var->count, TRUE);
 	check_arg(argv[2], var->time.die, TRUE);
 	check_arg(argv[3], var->time.eat, TRUE);
 	check_arg(argv[4], var->time.sleep, TRUE);
 	check_arg(argv[5], var->must_eat, argc == 6);
 	init_var(var);
+	join_thread(var);
 }
