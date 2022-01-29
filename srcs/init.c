@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 20:19:43 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/29 16:41:00 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/29 16:41:48 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ static void	init_philos(t_var *var)
 	pthread_create(&var->check_die, NULL, check_die, var);
 	if (var->must_eat != -1)
 		pthread_create(&var->check_eat, NULL, check_eat, var);
-
 }
 
 static void	init_var(t_var *var)
@@ -62,7 +61,7 @@ static void	init_var(t_var *var)
 
 static void	join_thread(t_var *var)
 {
-	int idx;
+	int	idx;
 
 	idx = var->count;
 	while (--idx > 0)
