@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:46:54 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/29 05:53:48 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/29 16:25:02 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,32 +27,40 @@ static void	release_fork(t_philo *philo)
 	pthread_mutex_unlock(philo->right);
 }
 
+static void	start_eating(t_philo *philo)
+{
+	const time_t	now = get_mseconds();
+
+	philo->eat++;
+	philo->act_end = philo->var->time.eat + now;
+	philo->die = philo->var->time.die + now;
+	print_message(now, philo->status++, philo->idx);
+}
+
+static void	start_sleeping(t_philo *philo)
+{
+	const time_t	now = get_mseconds();
+
+	release_fork(philo);
+	philo->act_end = philo->var->time.sleep + now;
+	print_message(now, philo->status++, philo->idx);
+}
+
 void	*act(void *data)
 {
-	t_var	*var;
 	t_philo	*philo;
 
-	var = ((t_philo *)data)->var;
 	philo = (t_philo *)data;
 	if ((philo->idx & 1) == 0)
-		usleep(var->time.eat * 1000);
-	while (var->is_end == 0)
+		usleep(philo->var->time.eat * 1000);
+	while (philo->var->is_end == 0)
 	{
 		if (philo->status == TAKEN_FORK)
 			taken_fork(philo);
 		else if (philo->status == START_EATING)
-		{
-			philo->eat++;
-			philo->act_end = var->time.eat + get_mseconds();
-			philo->die = var->time.die + get_mseconds();
-			print_message(get_mseconds(), philo->status++, philo->idx);
-		}
+			start_eating(philo);
 		else if (philo->status == START_SLEEPING)
-		{
-			release_fork(philo);
-			philo->act_end = var->time.sleep + get_mseconds();
-			print_message(get_mseconds(), philo->status++, philo->idx);
-		}
+			start_sleeping(philo);
 		else if (philo->status == START_THINKING)
 		{
 			print_message(get_mseconds(), philo->status, philo->idx);
