@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 05:26:08 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/30 22:32:36 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/30 22:34:03 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	*check_die(void *data)
 			philo->var->is_end = 1;
 			print_message(now, MSG_DIED, philo->idx);
 		}
-		usleep(100);
+		usleep(1000);
 	}
 	return (NULL);
 }
@@ -48,7 +48,7 @@ void	*check_must_eat(void *data)
 			checker += var->philos[idx].eat >= var->must_eat;
 		if (checker == var->count)
 			var->is_end = 1;
-		usleep(100);
+		usleep(1000);
 	}
 	return (NULL);
 }
