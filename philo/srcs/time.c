@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 17:16:56 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/30 23:01:30 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/31 03:03:56 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ time_t	get_mseconds(void)
 	return (time.tv_sec * 1000 + time.tv_usec / 1000 - start);
 }
 
-void	philo_sleep(time_t start, time_t target)
+void	idle(time_t start, time_t idle_time)
 {
 	while (TRUE)
 	{
-		usleep(target / 10);
-		if (get_mseconds() >= start + target)
+		usleep(idle_time / 10);
+		if (get_mseconds() >= start + idle_time)
 			return ;
 	}
 }
