@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:46:54 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/30 22:24:44 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/30 22:36:10 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,14 @@ static void	eating(t_philo *philo)
 	pthread_mutex_lock(philo->right);
 	print_message(get_mseconds(), MSG_FORK, philo->idx);
 	pthread_mutex_lock(&philo->eat_or_die);
-	now = get_mseconds();
-	philo->eat++;
-	philo->act_end = philo->var->time.eat + now;
-	philo->die = philo->var->time.die + now;
-	print_message(now, MSG_EATING, philo->idx);
+	if (philo->var->is_end == FALSE)
+	{
+		now = get_mseconds();
+		philo->eat++;
+		philo->act_end = philo->var->time.eat + now;
+		philo->die = philo->var->time.die + now;
+		print_message(now, MSG_EATING, philo->idx);
+	}
 	pthread_mutex_unlock(&philo->eat_or_die);
 }
 
