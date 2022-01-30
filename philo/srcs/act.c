@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:46:54 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/30 18:54:45 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/30 21:19:00 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 static void	taken_fork(t_philo *philo)
 {
 	pthread_mutex_lock(philo->left);
-	print_message(get_mseconds(), MSG_FORK, philo->idx);
+	if (philo->var->is_end == 0)
+		print_message(get_mseconds(), MSG_FORK, philo->idx);
 	pthread_mutex_lock(philo->right);
-	print_message(get_mseconds(), MSG_FORK, philo->idx);
+	if (philo->var->is_end == 0)
+		print_message(get_mseconds(), MSG_FORK, philo->idx);
 	philo->status++;
 }
 
@@ -49,7 +51,8 @@ static void	start_sleeping(t_philo *philo)
 
 	release_fork(philo);
 	philo->act_end = philo->var->time.sleep + now;
-	print_message(now, philo->status++, philo->idx);
+	if (philo->var->is_end == 0)
+		print_message(now, philo->status++, philo->idx);
 }
 
 void	*act(void *data)
@@ -68,7 +71,8 @@ void	*act(void *data)
 			start_sleeping(philo);
 		else if (philo->status == START_THINKING)
 		{
-			print_message(get_mseconds(), philo->status, philo->idx);
+			if (philo->var->is_end == 0)
+				print_message(get_mseconds(), philo->status, philo->idx);
 			philo->status = 0;
 		}
 		else if (philo->count >= MAX_COUNT && philo->act_end <= get_mseconds())
