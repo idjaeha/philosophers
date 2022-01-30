@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:31:01 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/30 18:54:20 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/30 21:49:23 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,11 @@
 # define MAX_COUNT 100
 
 # define TAKEN_FORK 0
-# define START_EATING 1
-# define EATING 2
-# define START_SLEEPING 3
-# define SLEEPING 4
-# define START_THINKING 5
-# define THINKING 6
+# define EATING 1
+# define START_SLEEPING 2
+# define SLEEPING 3
+# define START_THINKING 4
+# define THINKING 5
 
 # define STATUS_DIED 4
 # define STATUS_END 5
