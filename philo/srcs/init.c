@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 20:19:43 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/30 18:52:46 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/30 22:26:18 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,16 @@ static void	init_philos(t_var *var)
 		philo->die = var->time.die;
 		philo->status = TAKEN_FORK;
 		philo->act_end = 0;
-		philo->count = 0;
 		philo->left = &philo->fork;
 		philo->right = &var->philos[(idx + 1) % var->count].fork;
 		pthread_mutex_init(&philo->fork, NULL);
 		pthread_mutex_init(&philo->eat_or_die, NULL);
-		pthread_create(&philo->act, NULL, act, philo);
-		pthread_create(&philo->check_die, NULL, check_die, philo);
 	}
+	while (--idx >= 0)
+		pthread_create(&var->philos[idx].act, NULL, act, &var->philos[idx]);
+	while (++idx < var->count)
+		pthread_create(&var->philos[idx].check_die \
+		, NULL, check_die, &var->philos[idx]);
 }
 
 static int	init_var(t_var *var)
