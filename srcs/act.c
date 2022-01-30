@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:46:54 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/30 04:29:38 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/30 18:54:45 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	taken_fork(t_philo *philo)
 {
 	pthread_mutex_lock(philo->left);
+	print_message(get_mseconds(), MSG_FORK, philo->idx);
 	pthread_mutex_lock(philo->right);
 	print_message(get_mseconds(), MSG_FORK, philo->idx);
 	philo->status++;
@@ -28,13 +29,17 @@ static void	release_fork(t_philo *philo)
 
 static void	start_eating(t_philo *philo)
 {
-	const time_t	now = get_mseconds();
+	time_t	now;
 
 	pthread_mutex_lock(&philo->eat_or_die);
-	philo->eat++;
-	philo->act_end = philo->var->time.eat + now;
-	philo->die = philo->var->time.die + now;
-	print_message(now, philo->status++, philo->idx);
+	if (philo->var->is_end == 0)
+	{
+		now = get_mseconds();
+		philo->eat++;
+		philo->act_end = philo->var->time.eat + now;
+		philo->die = philo->var->time.die + now;
+		print_message(now, philo->status++, philo->idx);
+	}
 	pthread_mutex_unlock(&philo->eat_or_die);
 }
 
@@ -49,12 +54,11 @@ static void	start_sleeping(t_philo *philo)
 
 void	*act(void *data)
 {
-	t_philo	*philo;
+	t_philo *const	philo = data;
 
-	philo = (t_philo *)data;
 	if ((philo->idx & 1) == 0)
 		usleep(philo->var->time.eat * 1000);
-	while (philo->var->is_end == 0)
+	while (++philo->count && philo->var->is_end == 0)
 	{
 		if (philo->status == TAKEN_FORK)
 			taken_fork(philo);
@@ -67,8 +71,11 @@ void	*act(void *data)
 			print_message(get_mseconds(), philo->status, philo->idx);
 			philo->status = 0;
 		}
-		else if (philo->act_end <= get_mseconds())
+		else if (philo->count >= MAX_COUNT && philo->act_end <= get_mseconds())
+		{
 			philo->status++;
+			philo->count = 0;
+		}
 	}
 	return (NULL);
 }

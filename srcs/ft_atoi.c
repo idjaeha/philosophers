@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 23:32:03 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/27 01:34:31 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/30 18:53:08 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,6 @@ static int	ft_atoi_minus(const char *str)
 	while ('0' <= *str && *str <= '9')
 	{
 		result = result * 10 + (*str - '0');
-		if (result > 2147483648)
-		{
-			philo_error("negative overflow error", 1);
-		}
 		if (result > ABS_LLONG_MIN)
 		{
 			return ((int)ABS_LLONG_MIN);
@@ -41,10 +37,6 @@ static int	ft_atoi_plus(const char *str)
 	while ('0' <= *str && *str <= '9')
 	{
 		result = result * 10 + (*str - '0');
-		if (result > MAX_INT)
-		{
-			philo_error("positive overflow error", 1);
-		}
 		if (result > ABS_LLONG_MAX)
 		{
 			return ((int)ABS_LLONG_MAX);

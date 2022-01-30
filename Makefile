@@ -6,7 +6,6 @@ SRCS_NAME=	main.c\
 			init.c\
 			check.c\
 			release.c\
-			philo_error.c\
 			ft_atoi.c\
 			ft_print.c\
 			ft_string.c\

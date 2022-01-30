@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:31:01 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/29 03:29:04 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/30 18:54:20 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define TRUE 1
 # define FALSE 0
 # define DEBUG 1
+# define MAX_COUNT 100
 
 # define TAKEN_FORK 0
 # define START_EATING 1
