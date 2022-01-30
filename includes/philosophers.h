@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:30:20 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/30 21:01:31 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/30 21:05:24 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void		print_message(time_t now, int status, int idx);
 void		*act(void *data);
 int			init(t_var *philo, int argc, char *argv[]);
 time_t		get_mseconds(void);
-suseconds_t	get_useconds(void);
 void		*check_die(void *data);
 void		*check_must_eat(void *data);
 
