@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:30:20 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/30 13:34:04 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/30 21:01:31 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,9 @@
 # include <sys/time.h>
 
 int			ft_atoi(const char *str);
-void		ft_putnbr_fd(int n, int fd);
 void		ft_putstr_fd(char *str, int fd);
-char		*ft_strchr(const char *str, int ch, char **ret);
-char		*ft_substr(const char *str, unsigned int start, size_t len);
 void		*ft_memset(void *byte_str, int ch, size_t len);
 void		*ft_calloc(size_t count, size_t size);
-size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
-size_t		ft_strlen(const char *str);
 void		release(t_var *var);
 void		print_message(time_t now, int status, int idx);
 void		*act(void *data);

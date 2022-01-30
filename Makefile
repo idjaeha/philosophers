@@ -4,12 +4,10 @@ SRCS_NAME=	main.c\
 			act.c\
 			time.c\
 			init.c\
+			utils.c\
 			check.c\
 			release.c\
-			ft_atoi.c\
-			ft_print.c\
-			ft_string.c\
-			ft_memory.c
+			ft_atoi.c
 INCFALGS=-I./includes
 SRCS_DIR= ./srcs
 SRCS=$(addprefix $(SRCS_DIR)/, $(SRCS_NAME))
