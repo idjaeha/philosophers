@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:46:54 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/31 03:15:13 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/31 03:36:13 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static void	eating(t_philo *philo)
 	time_t	now;
 
 	pthread_mutex_lock(&philo->is_end);
-	if (philo->var->is_end == FALSE)
 	{
 		now = get_mseconds();
 		philo->count_eat++;
@@ -42,7 +41,7 @@ static void	eating(t_philo *philo)
 		print_message(now, MSG_EATING, philo->idx);
 	}
 	pthread_mutex_unlock(&philo->is_end);
-	idle(get_mseconds(), philo->var->time.eat);
+	idle(now, philo->var->time.eat);
 }
 
 static void	sleeping(t_philo *philo)
@@ -57,7 +56,7 @@ static void	sleeping(t_philo *philo)
 		now = get_mseconds();
 		philo->act_end = philo->var->time.sleep + now;
 		print_message(now, MSG_SLEEPING, philo->idx);
-		idle(get_mseconds(), philo->var->time.sleep);
+		idle(now, philo->var->time.sleep);
 	}
 }
 

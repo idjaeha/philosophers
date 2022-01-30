@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 05:26:08 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/31 02:46:17 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/31 03:44:29 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,11 @@ void	*check_must_eat(void *data)
 		while (++idx < var->count)
 			checker += var->philos[idx].count_eat >= var->must_eat;
 		if (checker == var->count)
+		{
+			ft_putstr_fd("Philosophers finished eating.\n", 1);
 			var->is_end = 1;
+			return (NULL);
+		}
 		usleep(5000);
 	}
 	return (NULL);

@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 17:16:56 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/31 03:03:56 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/31 03:35:18 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	idle(time_t start, time_t idle_time)
 {
 	while (TRUE)
 	{
-		usleep(idle_time / 10);
+		usleep(idle_time / 2);
 		if (get_mseconds() >= start + idle_time)
 			return ;
 	}
