@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:30:23 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/30 21:44:30 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/30 23:15:15 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	main(int argc, char *argv[])
 	{
 		if (init(&var, argc, argv))
 			release(&var);
+		else
+			return (0);
 		return (1);
 	}
 	ft_putstr_fd("올바르지 않은 인자의 개수\n", 2);

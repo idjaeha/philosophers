@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 20:19:43 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/30 23:06:45 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/30 23:14:33 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,32 @@ static int	check_arg(char *str, int value, int doCheck)
 			ft_putstr_fd("인자는 숫자만 가능합니다.\n", 2);
 			return (0);
 		}
+	}
+	return (1);
+}
+
+static int	check_thread(t_var *var)
+{
+	int	idx;
+
+	idx = -1;
+	while (++idx < var->count)
+	{
+		if (var->philos[idx].act == 0)
+		{
+			ft_putstr_fd("스레드가 생성되지 않았습니다.\n", 2);
+			return (0);
+		}
+		if (var->philos[idx].check_die == 0)
+		{
+			ft_putstr_fd("스레드가 생성되지 않았습니다.\n", 2);
+			return (0);
+		}
+	}
+	if (var->must_eat != -1 && var->check_must_eat == 0)
+	{
+		ft_putstr_fd("스레드가 생성되지 않았습니다.\n", 2);
+		return (0);
 	}
 	return (1);
 }
@@ -73,7 +99,7 @@ static int	init_var(t_var *var)
 	init_philos(var);
 	if (var->must_eat != -1)
 		pthread_create(&var->check_must_eat, NULL, check_must_eat, var);
-	return (1);
+	return (check_thread(var));
 }
 
 int	init(t_var *var, int argc, char *argv[])
