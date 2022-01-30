@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 01:33:02 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/30 21:44:28 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/30 23:06:45 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,13 @@ void	release(t_var *var)
 		pthread_detach(var->philos[idx].act);
 	idx = -1;
 	while (++idx < var->count)
-		pthread_detach(var->philos[idx].check_die);
+		pthread_join(var->philos[idx].check_die, NULL);
 	if (var->must_eat != -1)
-		pthread_detach(var->check_must_eat);
-	while (var->is_end == 0)
-	{
-	}
+		pthread_join(var->check_must_eat, NULL);
 	while (--idx >= 0)
 	{
 		pthread_mutex_destroy(&var->philos[idx].fork);
-		pthread_mutex_destroy(&var->philos[idx].eat_or_die);
+		pthread_mutex_destroy(&var->philos[idx].is_end);
 	}
 	free(var->philos);
 }

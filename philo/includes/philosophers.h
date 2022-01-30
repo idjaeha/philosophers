@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:30:20 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/30 21:05:24 by jayi             ###   ########.fr       */
+/*   Updated: 2022/01/30 23:01:54 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ int			init(t_var *philo, int argc, char *argv[]);
 time_t		get_mseconds(void);
 void		*check_die(void *data);
 void		*check_must_eat(void *data);
+void		philo_sleep(time_t start, time_t target);
 
 #endif
