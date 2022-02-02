@@ -6,15 +6,11 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:46:54 by jayi              #+#    #+#             */
-/*   Updated: 2022/02/03 00:47:43 by jayi             ###   ########.fr       */
+/*   Updated: 2022/02/03 00:48:54 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-
-// t_philo *을 인자로 받고
-// t_philo *을 인자로 받는 함수 포인터를 반환하는 함수
-// (*(t_philo *philo))(t_philo *)
 
 static void	taken_fork(t_philo *philo)
 {
