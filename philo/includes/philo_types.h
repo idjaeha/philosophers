@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:31:00 by jayi              #+#    #+#             */
-/*   Updated: 2022/02/02 22:42:02 by jayi             ###   ########.fr       */
+/*   Updated: 2022/02/02 23:21:42 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ struct s_var {
 
 struct s_philo {
 	int				idx;
-	int				act_end;
+	int				time_end;
 	int				time_die;
 	int				count_eat;
 	t_var			*var;
