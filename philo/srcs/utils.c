@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 20:46:44 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/30 22:41:57 by jayi             ###   ########.fr       */
+/*   Updated: 2022/02/02 21:21:51 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,9 @@ void	ft_putstr_fd(char *str, int fd)
 	write(fd, cur_str, ft_strlen(cur_str));
 }
 
-void	print_message(time_t now, int status, int idx)
+void	print_message(time_t now, char *message, int idx)
 {
-	static char	*message[] = {"has taken a fork", "is eating", "", \
-	"is sleeping", "has taken a left fork", "is thinking", \
-	"has taken a right fork", "died", "finish"};
-
-	printf("%ld\t%d\t%s\n", now, idx + 1, message[status]);
+	printf("%ld\t%d\t%s\n", now, idx + 1, message);
 }
 
 void	*ft_memset(void *byte_str, int ch, size_t len)

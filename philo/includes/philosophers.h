@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:30:20 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/31 02:28:36 by jayi             ###   ########.fr       */
+/*   Updated: 2022/02/02 21:22:05 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void		ft_putstr_fd(char *str, int fd);
 void		*ft_memset(void *byte_str, int ch, size_t len);
 void		*ft_calloc(size_t count, size_t size);
 void		release(t_var *var);
-void		print_message(time_t now, int status, int idx);
+void		print_message(time_t now, char *message, int idx);
 void		*act(void *data);
 int			init(t_var *philo, int argc, char *argv[]);
 time_t		get_mseconds(void);

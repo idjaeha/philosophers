@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:31:01 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/30 21:49:23 by jayi             ###   ########.fr       */
+/*   Updated: 2022/02/02 21:21:51 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,12 @@
 # define STATUS_DIED 4
 # define STATUS_END 5
 
-# define MSG_FORK 0
-# define MSG_EATING 1
-# define MSG_BLANK 2
-# define MSG_SLEEPING 3
-# define MSG_LEFT_FORK 4
-# define MSG_THINKING 5
-# define MSG_RIGHT_FORK 6
-# define MSG_DIED 7
+# define MSG_FORK "has taken a fork"
+# define MSG_EATING "is eating"
+# define MSG_SLEEPING "is sleeping"
+# define MSG_LEFT_FORK "has taken a left fork"
+# define MSG_THINKING "is thinking"
+# define MSG_RIGHT_FORK "has taken a right fork"
+# define MSG_DIED "died"
 
 #endif
