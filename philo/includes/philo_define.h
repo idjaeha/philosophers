@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:31:01 by jayi              #+#    #+#             */
-/*   Updated: 2022/02/02 21:21:51 by jayi             ###   ########.fr       */
+/*   Updated: 2022/02/02 21:23:39 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,13 @@
 # define DEBUG 1
 # define MAX_COUNT 100
 
-# define TAKEN_FORK 0
-# define EATING 1
-# define START_SLEEPING 2
-# define SLEEPING 3
-# define START_THINKING 4
-# define THINKING 5
-
 # define STATUS_DIED 4
 # define STATUS_END 5
 
 # define MSG_FORK "has taken a fork"
 # define MSG_EATING "is eating"
 # define MSG_SLEEPING "is sleeping"
-# define MSG_LEFT_FORK "has taken a left fork"
 # define MSG_THINKING "is thinking"
-# define MSG_RIGHT_FORK "has taken a right fork"
 # define MSG_DIED "died"
 
 #endif
