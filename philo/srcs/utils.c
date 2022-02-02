@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 20:46:44 by jayi              #+#    #+#             */
-/*   Updated: 2022/02/02 21:21:51 by jayi             ###   ########.fr       */
+/*   Updated: 2022/02/02 21:50:09 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	ft_putstr_fd(char *str, int fd)
 	write(fd, cur_str, ft_strlen(cur_str));
 }
 
-void	print_message(time_t now, char *message, int idx)
+void	print_message(time_t time, char *message, int idx)
 {
-	printf("%ld\t%d\t%s\n", now, idx + 1, message);
+	printf("%ld\t%d\t%s\n", time, idx + 1, message);
 }
 
 void	*ft_memset(void *byte_str, int ch, size_t len)

@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:31:01 by jayi              #+#    #+#             */
-/*   Updated: 2022/02/02 21:23:39 by jayi             ###   ########.fr       */
+/*   Updated: 2022/02/02 22:13:48 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # define MIN_INT 0xFFFFFFFF
 # define TRUE 1
 # define FALSE 0
+# define SUCCESS 1
+# define FAIL 0
 # define DEBUG 1
 # define MAX_COUNT 100
 

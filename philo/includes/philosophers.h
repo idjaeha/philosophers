@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:30:20 by jayi              #+#    #+#             */
-/*   Updated: 2022/02/02 21:22:05 by jayi             ###   ########.fr       */
+/*   Updated: 2022/02/02 22:17:34 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,18 @@
 # include <stdlib.h>
 # include <sys/time.h>
 
+int			init(t_var *philo, int argc, char *argv[]);
+int			start(t_var *var);
+void		*act(void *data);
+void		release(t_var *var);
+void		idle(time_t start, time_t target);
+void		*check_die(void *data);
+void		*check_must_eat(void *data);
+time_t		get_mseconds(void);
+void		print_message(time_t time, char *message, int idx);
 int			ft_atoi(const char *str);
 void		ft_putstr_fd(char *str, int fd);
 void		*ft_memset(void *byte_str, int ch, size_t len);
 void		*ft_calloc(size_t count, size_t size);
-void		release(t_var *var);
-void		print_message(time_t now, char *message, int idx);
-void		*act(void *data);
-int			init(t_var *philo, int argc, char *argv[]);
-time_t		get_mseconds(void);
-void		*check_die(void *data);
-void		*check_must_eat(void *data);
-void		idle(time_t start, time_t target);
 
 #endif

@@ -1,6 +1,7 @@
 NAME=philo
 CFLAGS=-Wall -Wextra -Werror
 SRCS_NAME=	main.c\
+			start.c\
 			act.c\
 			time.c\
 			init.c\
