@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:30:20 by jayi              #+#    #+#             */
-/*   Updated: 2022/02/03 00:44:33 by jayi             ###   ########.fr       */
+/*   Updated: 2022/02/03 01:00:43 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@
 int			init(t_var *philo, int argc, char *argv[]);
 int			start(t_var *var);
 void		*act(void *data);
+void		*taken_fork(t_philo *philo);
+void		*eating(t_philo *philo);
+void		*sleeping(t_philo *philo);
+void		*thinking(t_philo *philo);
 void		release(t_var *var);
 void		idle(time_t start, time_t target);
 void		*check_die(void *data);

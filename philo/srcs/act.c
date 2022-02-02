@@ -6,21 +6,22 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:46:54 by jayi              #+#    #+#             */
-/*   Updated: 2022/02/03 00:48:54 by jayi             ###   ########.fr       */
+/*   Updated: 2022/02/03 01:04:32 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static void	taken_fork(t_philo *philo)
+void	*taken_fork(t_philo *philo)
 {
 	pthread_mutex_lock(philo->left);
 	print_message(MSG_FORK, philo->idx, NULL, philo->var);
 	pthread_mutex_lock(philo->right);
 	print_message(MSG_FORK, philo->idx, NULL, philo->var);
+	return (eating);
 }
 
-static void	eating(t_philo *philo)
+void	*eating(t_philo *philo)
 {
 	time_t	now;
 
@@ -34,9 +35,10 @@ static void	eating(t_philo *philo)
 	}
 	pthread_mutex_unlock(&philo->eating);
 	idle(now, philo->var->time.eat);
+	return (sleeping);
 }
 
-static void	sleeping(t_philo *philo)
+void	*sleeping(t_philo *philo)
 {
 	time_t	now;
 
@@ -48,24 +50,24 @@ static void	sleeping(t_philo *philo)
 		print_message(MSG_SLEEPING, philo->idx, NULL, philo->var);
 		idle(now, philo->var->time.sleep);
 	}
+	return (thinking);
 }
 
-static void	thinking(t_philo *philo)
+void	*thinking(t_philo *philo)
 {
 	print_message(MSG_THINKING, philo->idx, NULL, philo->var);
+	return (taken_fork);
 }
 
 void	*act(void *data)
 {
-	int				current_idx;
 	t_philo *const	philo = data;
-	static	void	(*current_act[4])(t_philo *) = \
-	{taken_fork, eating, sleeping, thinking};
+	void			*(*current)(t_philo *);
 
-	current_idx = 0;
+	current = taken_fork;
 	if (philo->idx & 1)
 		usleep(philo->var->time.eat * 100);
 	while (philo->var->is_end == 0)
-		current_act[current_idx++ % 4](philo);
+		current = current(philo);
 	return (NULL);
 }
