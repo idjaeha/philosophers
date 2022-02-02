@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:46:54 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/31 03:36:13 by jayi             ###   ########.fr       */
+/*   Updated: 2022/02/02 18:29:20 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,17 @@
 
 static void	taken_fork(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->is_end);
-	pthread_mutex_unlock(&philo->is_end);
-	{
-		pthread_mutex_lock(philo->left);
-		print_message(get_mseconds(), MSG_FORK, philo->idx);
-	}
-	pthread_mutex_lock(&philo->is_end);
-	pthread_mutex_unlock(&philo->is_end);
-	{
-		pthread_mutex_lock(philo->right);
-		print_message(get_mseconds(), MSG_FORK, philo->idx);
-	}
+	pthread_mutex_lock(philo->left);
+	print_message(get_mseconds(), MSG_FORK, philo->idx);
+	pthread_mutex_lock(philo->right);
+	print_message(get_mseconds(), MSG_FORK, philo->idx);
 }
 
 static void	eating(t_philo *philo)
 {
 	time_t	now;
 
-	pthread_mutex_lock(&philo->is_end);
+	pthread_mutex_lock(&philo->eating);
 	{
 		now = get_mseconds();
 		philo->count_eat++;
@@ -40,7 +32,7 @@ static void	eating(t_philo *philo)
 		philo->time_die = philo->var->time.die + now;
 		print_message(now, MSG_EATING, philo->idx);
 	}
-	pthread_mutex_unlock(&philo->is_end);
+	pthread_mutex_unlock(&philo->eating);
 	idle(now, philo->var->time.eat);
 }
 
@@ -48,8 +40,6 @@ static void	sleeping(t_philo *philo)
 {
 	time_t	now;
 
-	pthread_mutex_lock(&philo->is_end);
-	pthread_mutex_unlock(&philo->is_end);
 	pthread_mutex_unlock(philo->left);
 	pthread_mutex_unlock(philo->right);
 	{
@@ -62,11 +52,7 @@ static void	sleeping(t_philo *philo)
 
 static void	thinking(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->is_end);
-	pthread_mutex_unlock(&philo->is_end);
-	{
-		print_message(get_mseconds(), MSG_THINKING, philo->idx);
-	}
+	print_message(get_mseconds(), MSG_THINKING, philo->idx);
 }
 
 void	*act(void *data)

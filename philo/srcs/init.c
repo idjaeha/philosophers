@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 20:19:43 by jayi              #+#    #+#             */
-/*   Updated: 2022/01/30 23:14:33 by jayi             ###   ########.fr       */
+/*   Updated: 2022/02/02 18:18:51 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void	init_philos(t_var *var)
 		philo->left = &philo->fork;
 		philo->right = &var->philos[(idx + 1) % var->count].fork;
 		pthread_mutex_init(&philo->fork, NULL);
-		pthread_mutex_init(&philo->is_end, NULL);
+		pthread_mutex_init(&philo->eating, NULL);
 	}
 	while (--idx >= 0)
 		pthread_create(&var->philos[idx].act, NULL, act, &var->philos[idx]);
