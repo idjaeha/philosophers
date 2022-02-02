@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 01:33:02 by jayi              #+#    #+#             */
-/*   Updated: 2022/02/02 18:18:51 by jayi             ###   ########.fr       */
+/*   Updated: 2022/02/02 23:04:02 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ void	release(t_var *var)
 		pthread_mutex_destroy(&var->philos[idx].fork);
 		pthread_mutex_destroy(&var->philos[idx].eating);
 	}
+	pthread_mutex_destroy(&var->print);
 	free(var->philos);
 }

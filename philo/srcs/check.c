@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 05:26:08 by jayi              #+#    #+#             */
-/*   Updated: 2022/02/02 18:29:30 by jayi             ###   ########.fr       */
+/*   Updated: 2022/02/02 22:59:21 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	*check_die(void *data)
 		now = get_mseconds();
 		if (now >= philo->time_die)
 		{
-			print_message(now, MSG_DIED, philo->idx);
+			print_message(MSG_DIED, philo->idx, (void *)TRUE, TRUE);
 			philo->var->is_end = 1;
 			return (NULL);
 		}

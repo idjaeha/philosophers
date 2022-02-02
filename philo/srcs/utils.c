@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 20:46:44 by jayi              #+#    #+#             */
-/*   Updated: 2022/02/02 21:50:09 by jayi             ###   ########.fr       */
+/*   Updated: 2022/02/02 22:55:49 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,26 @@ void	ft_putstr_fd(char *str, int fd)
 	write(fd, cur_str, ft_strlen(cur_str));
 }
 
-void	print_message(time_t time, char *message, int idx)
+void	print_message(
+		char *message, int idx, pthread_mutex_t *print, int is_die)
 {
-	printf("%ld\t%d\t%s\n", time, idx + 1, message);
+	static pthread_mutex_t	*t_print = NULL;
+
+	if (print == NULL)
+	{
+		pthread_mutex_lock(t_print);
+		printf("%ld\t%d\t%s\n", get_mseconds(), idx + 1, message);
+		pthread_mutex_unlock(t_print);
+	}
+	else if (is_die == TRUE)
+	{
+		pthread_mutex_lock(t_print);
+		printf("%ld\t%d\t%s\n", get_mseconds(), idx + 1, message);
+	}
+	else
+	{
+		t_print = print;
+	}
 }
 
 void	*ft_memset(void *byte_str, int ch, size_t len)

@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:30:20 by jayi              #+#    #+#             */
-/*   Updated: 2022/02/02 22:17:34 by jayi             ###   ########.fr       */
+/*   Updated: 2022/02/02 22:54:05 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void		idle(time_t start, time_t target);
 void		*check_die(void *data);
 void		*check_must_eat(void *data);
 time_t		get_mseconds(void);
-void		print_message(time_t time, char *message, int idx);
+void		print_message(char *message, int idx \
+			, pthread_mutex_t *print, int is_die);
 int			ft_atoi(const char *str);
 void		ft_putstr_fd(char *str, int fd);
 void		*ft_memset(void *byte_str, int ch, size_t len);

@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:31:00 by jayi              #+#    #+#             */
-/*   Updated: 2022/02/02 21:24:10 by jayi             ###   ########.fr       */
+/*   Updated: 2022/02/02 22:42:02 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ struct s_var {
 	int					must_eat;
 	t_philo				*philos;
 	pthread_t			check_must_eat;
+	pthread_mutex_t		print;
 };
 
 struct s_philo {
