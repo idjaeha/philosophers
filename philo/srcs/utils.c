@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 20:46:44 by jayi              #+#    #+#             */
-/*   Updated: 2022/02/02 23:20:53 by jayi             ###   ########.fr       */
+/*   Updated: 2022/02/02 23:57:26 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,29 @@ void	ft_putstr_fd(char *str, int fd)
 }
 
 void	print_message(
-		char *message, int idx, pthread_mutex_t *print, int is_end)
+		char *message, int idx, pthread_mutex_t *print, t_var *var)
 {
-	static pthread_mutex_t	*t_print = NULL;
+	static pthread_mutex_t	*m_print = NULL;
 
 	if (print == NULL)
 	{
-		pthread_mutex_lock(t_print);
+		pthread_mutex_lock(m_print);
+		if (var->is_end != FALSE)
+		{
+			pthread_mutex_unlock(m_print);
+			return ;
+		}
 		printf("%ld\t%d\t%s\n", get_mseconds(), idx + 1, message);
-		pthread_mutex_unlock(t_print);
+		pthread_mutex_unlock(m_print);
 	}
-	else if (is_end == TRUE)
+	else if (var->is_end == TRUE)
 	{
-		pthread_mutex_lock(t_print);
+		pthread_mutex_lock(m_print);
 		printf("%ld\t%d\t%s\n", get_mseconds(), idx + 1, message);
 	}
 	else
 	{
-		t_print = print;
+		m_print = print;
 	}
 }
 

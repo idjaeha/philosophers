@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 01:33:02 by jayi              #+#    #+#             */
-/*   Updated: 2022/02/02 23:09:08 by jayi             ###   ########.fr       */
+/*   Updated: 2022/02/02 23:56:46 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	release(t_var *var)
 	if (var->must_eat != -1)
 		pthread_detach(var->check_must_eat);
 	while (var->is_end == FALSE)
-		;
+		usleep(5000);
+	usleep(5000);
 	while (--idx >= 0)
 	{
 		pthread_mutex_destroy(&var->philos[idx].fork);

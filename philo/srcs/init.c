@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 20:19:43 by jayi              #+#    #+#             */
-/*   Updated: 2022/02/02 23:21:41 by jayi             ###   ########.fr       */
+/*   Updated: 2022/02/02 23:46:46 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static int	init_var(t_var *var)
 		return (FAIL);
 	}
 	pthread_mutex_init(&var->print, NULL);
-	print_message(NULL, 0, &var->print, FALSE);
+	print_message(NULL, 0, &var->print, var);
 	init_philos(var);
 	return (SUCCESS);
 }
