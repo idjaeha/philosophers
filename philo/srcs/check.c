@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 05:26:08 by jayi              #+#    #+#             */
-/*   Updated: 2022/02/03 00:44:36 by jayi             ###   ########.fr       */
+/*   Updated: 2022/02/03 15:21:42 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	*check_die(void *data)
 			return (NULL);
 		}
 		pthread_mutex_unlock(&philo->eating);
-		usleep(5000);
+		usleep(SLEEP_DIED);
 	}
 	return (NULL);
 }
@@ -53,7 +53,7 @@ void	*check_must_eat(void *data)
 			var->is_end = 1;
 			return (NULL);
 		}
-		usleep(5000);
+		usleep(SLEEP_MUST_EAT);
 	}
 	return (NULL);
 }

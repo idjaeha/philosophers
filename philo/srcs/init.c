@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 20:19:43 by jayi              #+#    #+#             */
-/*   Updated: 2022/02/02 23:46:46 by jayi             ###   ########.fr       */
+/*   Updated: 2022/02/03 15:20:46 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static void	init_philos(t_var *var)
 		philo->idx = idx;
 		philo->var = var;
 		philo->time_die = var->time.die;
-		philo->time_end = 0;
 		philo->left = &philo->fork;
 		philo->right = &var->philos[(idx + 1) % var->count].fork;
 		pthread_mutex_init(&philo->fork, NULL);

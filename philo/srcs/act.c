@@ -6,7 +6,7 @@
 /*   By: jayi <jayi@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:46:54 by jayi              #+#    #+#             */
-/*   Updated: 2022/02/03 01:04:32 by jayi             ###   ########.fr       */
+/*   Updated: 2022/02/03 15:23:07 by jayi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	*eating(t_philo *philo)
 	{
 		now = get_mseconds();
 		philo->count_eat++;
-		philo->time_end = philo->var->time.eat + now;
 		philo->time_die = philo->var->time.die + now;
 		print_message(MSG_EATING, philo->idx, NULL, philo->var);
 	}
@@ -46,7 +45,6 @@ void	*sleeping(t_philo *philo)
 	pthread_mutex_unlock(philo->right);
 	{
 		now = get_mseconds();
-		philo->time_end = philo->var->time.sleep + now;
 		print_message(MSG_SLEEPING, philo->idx, NULL, philo->var);
 		idle(now, philo->var->time.sleep);
 	}
@@ -66,7 +64,7 @@ void	*act(void *data)
 
 	current = taken_fork;
 	if (philo->idx & 1)
-		usleep(philo->var->time.eat * 100);
+		usleep(philo->var->time.eat * START_DELAY);
 	while (philo->var->is_end == 0)
 		current = current(philo);
 	return (NULL);
